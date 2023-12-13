@@ -36,12 +36,11 @@ sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/po
 # Restart PostgreSQL to apply changes
 sudo systemctl restart postgresql
 
-# Login to PostgreSQL and create user 'tattva' with password 'Tattva@2023'
-sudo -u postgres psql -c "CREATE USER tattva WITH PASSWORD 'Tattva@2023';"
+# Login to PostgreSQL and create user 'user' with password 'Password'
+sudo -u postgres psql -c "CREATE USER user WITH PASSWORD 'Password';"
 
 # Add user entry to pg_hba.conf for specific IPs using md5 authentication
-echo "host    all             tattva          182.69.118.52/24       md5" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
-echo "host    all             tattva          115.246.109.218/24     md5" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
+echo "host    all             user.name          0.0.0.0/24       md5" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
 
 # Restart PostgreSQL to apply changes
 sudo systemctl restart postgresql
